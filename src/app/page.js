@@ -16,7 +16,7 @@ export default function Home() {
             <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
               Full Stack Software Engineer
             </code>
-            and currently pursuing to become an
+            , working towards becoming an{" "}
             <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">AI Automation Engineer
             </code>
             .
