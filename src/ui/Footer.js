@@ -9,7 +9,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#0e0e11] text-gray-300 py-12 px-4 md:px-12">
+    <footer className="py-12 px-4 md:px-12">
       <div className="container mx-auto">
         
         {/* Top section with Logo and Columns */}
