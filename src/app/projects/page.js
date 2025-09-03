@@ -1,9 +1,13 @@
 import React from 'react'
 
-const projects = () => {
+const Projects = () => {
   return (
-    <div>projects</div>
+    <div>
+      <p className="mt-20 p-5 text-center">
+        Projects
+      </p>
+    </div>
   )
 }
 
-export default projects
+export default Projects;

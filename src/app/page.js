@@ -4,7 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 gap-16 sm:p-20">
       <main className="max-w-lg flex flex-col gap-[10rem] row-start-2 items-center sm:items-start">
         <ul className="font-mono list-inside list-none text-sm/6 text-center sm:text-left">
           <li className="mb-2 text-sm/7 tracking-[-.01em]">

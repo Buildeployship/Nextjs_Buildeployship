@@ -1,84 +1,104 @@
 import React from 'react';
-import Link from 'next/link';
+
+// This is a single, self-contained Next.js component for the footer.
+// It uses Tailwind CSS for all styling to ensure a modern and responsive design.
+// The component is designed to be easily integrated into any Next.js application.
 
 const Footer = () => {
-
-  const socialIcons = [
-    { name: 'LinkedIn', path: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z", url: 'https://www.linkedin.com/in/buildeployship/' },
-    { name: 'GitHub', path: "M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.332-1.756-1.332-1.756-1.088-.745.083-.73.083-.73 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.492.998.108-.778.418-1.305.762-1.606-2.665-.3-5.466-1.33-5.466-5.931 0-1.31.465-2.385 1.233-3.22-.124-.3-.532-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.004-.404 1.02.005 2.046.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.645 1.653.238 2.876.118 3.176.77.835 1.232 1.91 1.232 3.22 0 4.61-2.801 5.629-5.476 5.92-.42.365-.819 1.092-.819 2.203v3.256c0 .32.217.691.825.576 4.766-1.59 8.204-6.088 8.204-11.385 0-6.627-5.373-12-12-12z", url: 'https://github.com/Buildeployship?tab=repositories' },
+  // A simple data structure to represent the footer links.
+  const sections = [
+    {
+      links: [
+        { name: 'Home', url: 'https://github.com/Buildeployship?tab=repositories'},
+        { name: 'Projects', url: '/projects'},
+        'About',
+        'Contact',
+        'GitHub',
+      ]
+    },
   ];
 
   return (
-    <footer className="py-12 px-4 md:px-12">
-      <div className="container mx-auto">
-        
-        {/* Top section with Logo and Columns */}
-        <div className="flex flex-col md:flex-row justify-between gap-12 md:gap-8">
-          
-          {/* Main sections for links and contact */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 w-full">
-            
-            {/* Left Column: Links */}
-            <div className="flex flex-col gap-2 w-full md:w-1/2">
-              <ul className="flex flex-col gap-2">
-                <li>
-                  <Link href="/" className="hover:text-white transition-colors duration-200">Home</Link>
-                </li>
-                <li>
-                  <a href="/projects" className="hover:text-white transition-colors duration-200">Projects</a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200">GitHub</a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200">Resume/CV</a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200">About</a>
-                </li>
+    <footer className="text-white font-sans">
+      <div className="container mx-auto px-4 py-16">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          {sections.map((section, index) => (
+            <div key={index} className="flex flex-col space-y-4">
+              <h4 className="text-gray-400 font-semibold mb-2">{section.title}</h4>
+              <ul className="space-y-2">
+                {section.links.map((link, linkIndex) => {
+                  if (typeof link === 'string') {
+                    return (
+                      <li key={linkIndex}>
+                        <a
+                          href="#"
+                          className="text-gray-200 hover:text-white transition-colors duration-200"
+                        >
+                          {link}
+                        </a>
+                      </li>
+                    );
+                  } else if (typeof link === 'object' && link !== null && link.name && link.url) {
+                    return (
+                      <li key={linkIndex}>
+                        <a
+                          href={link.url}
+                          className="text-gray-200 hover:text-white transition-colors duration-200"
+                        >
+                          {link.name}
+                        </a>
+                      </li>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
               </ul>
             </div>
+          ))}
+        </div>
 
-            {/* Right Column: Contact */}
-            <div className="flex flex-col gap-2 w-full md:w-1/2">
-              <h3 className="font-bold text-lg mb-2 text-white">Contact</h3>
-              <form className="flex mt-2">
-                <input
-                  type="email"
-                  placeholder="user@gmail.com"
-                  className="bg-[#1a1a1f] text-gray-200 rounded-l-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <button
-                  type="submit"
-                  className="bg-[#2a2a2f] text-gray-200 rounded-r-md px-4 py-2 hover:bg-[#3a3a3f] transition-colors duration-200"
-                >
-                  Send
-                </button>
-              </form>
-            </div>
-            
-          </div>
-        </div>
-        
-        {/* Horizontal divider line */}
-        <hr className="my-8 md:my-12 border-t border-gray-700" />
-        
-        {/* Bottom section with Copyright and Social Icons */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm gap-4 md:gap-0">
-          <p className="order-2 md:order-1">2025 © Copyright | Jordan Taylor | GNU AGPLv3 License</p>
-          
+        {/* Separator Line */}
+        <div className="mt-16 mb-8 border-t border-gray-800"></div>
+
+        {/* Social and Legal Section */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
           {/* Social Icons */}
-          <div className="flex items-center gap-4 order-1 md:order-2">
-            {socialIcons.map((icon) => (
-              <a key={icon.name} href={icon.url} className="text-gray-400 hover:text-white transition-colors duration-200">
-                <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d={icon.path} />
-                </svg>
-              </a>
-            ))}
+          <div className="flex justify-center md:justify-start space-x-6 text-2xl text-gray-400">
+            {/* These are placeholder SVGs for the social media icons */}
+            <a href="https://github.com/Buildeployship?tab=repositories" className="hover:text-white transition-colors duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+                <path d="M11 7h2v10h-2V7z" />
+                <path d="M7 11h10v2H7v-2z" />
+              </svg>
+            </a>
+            <a href="https://github.com/Buildeployship?tab=repositories" className="hover:text-white transition-colors duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+                <path d="M11 7h2v10h-2V7z" />
+                <path d="M7 11h10v2H7v-2z" />
+              </svg>
+            </a>
+            <a href="https://github.com/Buildeployship?tab=repositories" className="hover:text-white transition-colors duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+                <path d="M11 7h2v10h-2V7z" />
+                <path d="M7 11h10v2H7v-2z" />
+              </svg>
+            </a>
+          </div>
+
+          {/* Legal and Other Links */}
+          <div className="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 text-center md:text-left text-sm text-gray-400">
+            <span className="whitespace-nowrap">© 2025 Buildeployship</span>
+            <span className="whitespace-nowrap">All Rights Reserved</span>
+            {/* <a href="#" className="hover:text-white transition-colors duration-200">
+              Privacy Policy
+            </a> */}
           </div>
         </div>
-        
       </div>
     </footer>
   );
